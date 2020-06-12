@@ -1,3 +1,8 @@
-<div class="text-center">
-  <h1>teq teq</h1>
-</div>
+<% if logged_in? %>
+  <P>ログイン完了ユーザ: <%= current_user.name %></P>
+<% else %>
+  <div class="text-center">
+    <h1>teq teq</h1>
+    <%= link_to '新規登録', signup_path, class: 'btn btn-lg btn-primary' %>
+  </div>
+<% end %>
