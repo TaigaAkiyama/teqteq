@@ -1,0 +1,10 @@
+<h1>質問内容を編集する</h1>
+
+<%= form_with(model: @question, local: true) do |f| %>
+  <%= f.label :body, '質問' %>
+  <%= f.text_field :body %>
+  
+  <%= f.submit '質問する' %>
+<% end %>
+
+<%= link_to '質問詳細に戻る', question_path(@question) %>

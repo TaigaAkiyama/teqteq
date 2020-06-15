@@ -1,0 +1,12 @@
+<h1>質問詳細</h1>
+<h2><%= @question.title %></h2>
+  <div class="posted_at">
+　  <%= @question.created_at %>
+　  <div class="questions-show-item">
+　    <%= @question.body %>
+　  </div>
+　</div>
+　<%= link_to '一覧に戻る', questions_path %>
+　<%= link_to 'この質問を編集する', edit_question_path(@question) %>
+　<%= link_to 'このメッセージを削除する', @question, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>
+　

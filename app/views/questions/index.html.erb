@@ -1,0 +1,18 @@
+<h1>質問一覧</h1>
+<ul class="list-unstyled">
+  <% @questions.each do |question| %>
+    <li class="media mb-3">
+        <img class="mr-2 rounded">
+        <div class="media-body">
+          <div>
+            <%= link_to question.user.name, user_path(question.user) %> <span class="text-muted">投稿日 <%= question.created_at %></span>
+          </div>
+          <div>
+            <p><%= question.title %></p>
+            <%= link_to("詳細", "/questions/#{question.id}") %>
+          </div>
+        </div>
+    </li>
+  <% end %>
+  <%= paginate @questions %>
+</ul>
