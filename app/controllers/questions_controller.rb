@@ -11,11 +11,11 @@ class QuestionsController < ApplicationController
   end
 
   def new
-    @question = Question.new
+    @question = current_user.questions.new
   end
 
   def create
-    @question = Question.new(question_params)
+    @question = current_user.questions.new(question_params)
     
     if @question.save
       flash[:success] = '質問を投稿しました。'
@@ -43,9 +43,7 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    @question = Question.find(params[:id])
     @question.destroy
-    
     flash[:success] = '質問は正常に削除されました'
     redirect_to questions_url
   end
@@ -53,6 +51,13 @@ class QuestionsController < ApplicationController
   private
   
   def question_params
-    params.require(:question).permit(:content)
+    params.require(:question).permit(:title, :body, :picture)
+  end
+  
+  def correct_user
+    @question = current_user.questions.find_by(id: params[:id])
+    unless @question
+      redirect_to root_url
+    end
   end
 end

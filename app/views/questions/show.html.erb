@@ -6,7 +6,12 @@
 　    <%= @question.body %>
 　  </div>
 　</div>
-　<%= link_to '一覧に戻る', questions_path %>
-　<%= link_to 'この質問を編集する', edit_question_path(@question) %>
-　<%= link_to 'このメッセージを削除する', @question, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>
+　<div>
+　  <% if current_user == @question.user %>
+　    <%= link_to 'この質問を編集する', edit_question_path(@question), class: 'btn btn-danger btn-sm' %>
+　    <%= link_to 'このメッセージを削除する', @question, method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class: 'btn btn-danger btn-sm' %>
+　  <% end %>
+　</div>
+　<%= link_to '一覧に戻る', questions_path %>　
+　
 　
