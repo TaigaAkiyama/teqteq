@@ -8,6 +8,8 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find_by(id: params[:id])
+    @answer = Answer.new
+    @answers = @question.answers.includes(:user)
   end
 
   def new

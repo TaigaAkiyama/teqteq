@@ -1,0 +1,26 @@
+<h1>回答する</h1>
+
+<div class=container>
+  <div class="border-bottom" style="padding:10px;">
+    <h2><%= @question.title %></h2>
+    <%= @question.body %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-6">
+    
+     <%= form_with(model: @answer, local: true) do |f| %>
+       <div class="form-group">
+          <%= f.label :body, '本文' %>
+          <%= f.text_area :body, class: 'form-control' %>
+       </div>
+       
+       <div>
+       <%= f.file_field :picture %>　
+       <%= f.submit '回答する', class: 'btn btn-primary' %>
+       </div>
+     <% end %>
+  </div>
+</div>
+<%= link_to '質問一覧に戻る', questions_path %>

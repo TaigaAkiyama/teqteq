@@ -19,6 +19,6 @@ class User < ApplicationRecord
   end
   
   def user_answer?(question)
-    self.user_answers.include?(question)
+    
   end
 end

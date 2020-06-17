@@ -12,5 +12,8 @@
       <li class="nav-item"><a href="#" class="nav-link">回答</a></li>
       <li class="nav-item"><a href="#" class="nav-link">お気に入り</a></li>
     </ul>
+    <% @questions.each do |question|%>
+    <p><%= question.title %></p>
+    <% end %>
   </div>
 </div>

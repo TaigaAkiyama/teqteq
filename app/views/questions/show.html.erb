@@ -10,7 +10,27 @@
 　  <% if current_user == @question.user %>
 　    <%= link_to 'この質問を編集する', edit_question_path(@question), class: 'btn btn-danger btn-sm' %>
 　    <%= link_to 'このメッセージを削除する', @question, method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class: 'btn btn-danger btn-sm' %>
+　  <% else %>
+　    <%= form_with(model: [@question, @answer], local: true) do |f| %>
+　      <%= f.text_field :body, placeholder: '回答する' %>
+　      <%= f.file_field :picture %>
+　      <%= f.submit '投稿', class: 'btn btn-primary' %>
+　    <% end %>
 　  <% end %>
+　</div>
+　<div class="answers">
+　  <h2>回答</h2>
+　    <% @question.answers.each do |answer| %>
+　      <div>
+　        <strong><%= link_to answer.user.name, "/users/#{answer.user.id}" %></strong>
+　        <%= answer.body %>
+　        <!--画像の表示も-->
+　        <% if current_user == answer.user %>
+　          <%= link_to 'この回答を編集する', edit_question_answer_path(@question,answer), class: 'btn btn-danger btn-sm' %>
+　          <%= link_to 'この回答を削除する', question_answer_path(@question,answer), method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class: 'btn btn-danger btn-sm' %>
+　        <% end %>
+　      </div>
+　    <% end %>
 　</div>
 　<%= link_to '一覧に戻る', questions_path %>　
 　
