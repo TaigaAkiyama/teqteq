@@ -9,16 +9,15 @@ class User < ApplicationRecord
   has_many :answers
   has_many :user_answers, through: :answers, source: :answer 
   
-  def answer(question)
-    answers.find_or_create_by(question_id: question.id)
-  end
+  mount_uploader :image, ImageUploader
   
-  def unanswer(question)
-    answer = answers.find_by(question_id: question.id)
-    answer.destroy if answer
-  end
+  #def answer(question)
+    #answers.find_or_create_by(question_id: question.id)
+  #end
   
-  def user_answer?(question)
-    
-  end
+  #def unanswer(question)
+    #answer = answers.find_by(question_id: question.id)
+    #answer.destroy if answer
+  #end
+  
 end
