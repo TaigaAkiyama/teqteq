@@ -14,10 +14,11 @@
         <%= f.text_area :body, class: 'form-control' %>
        </div>
        
-       <div>
-       <%= f.file_field :picture %>　
-       <%= f.submit '投稿', class: 'btn btn-primary' %>
+       <div class="form-group">
+        <%= f.label :picture, '画像' %>
+        <%= f.file_field :picture %>　
        </div>
+       <%= f.submit '投稿', class: 'btn btn-primary' %>
      <% end %>
   </div>
 </div>

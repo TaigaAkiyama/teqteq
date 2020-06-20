@@ -31,7 +31,10 @@ class UsersController < ApplicationController
   end
 
   def update
+    puts "ここを見る"
+    p params
     @user = User.find(params[:id])
+    p @user
     
     if @user.update(user_params)
       flash[:success] = 'プロフィールを更新しました。'
@@ -42,9 +45,16 @@ class UsersController < ApplicationController
     end
   end
   
+  def answered_questions
+    @user = User.find(params[:id])
+    @answers = @user.answers.page(params[:page])
+    @answered_questions = @user.answered_questions
+    counts(@user)
+  end
+  
   private
   
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :image, :plofile)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :picture, :plofile)
   end
 end

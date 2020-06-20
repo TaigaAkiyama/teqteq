@@ -7,9 +7,9 @@ class User < ApplicationRecord
   
   has_many :questions
   has_many :answers
-  has_many :user_answers, through: :answers, source: :answer 
+  has_many :answered_questions, through: :answers, source: :question 
   
-  mount_uploader :image, ImageUploader
+  mount_uploader :picture, ImageUploader
   
   #def answer(question)
     #answers.find_or_create_by(question_id: question.id)

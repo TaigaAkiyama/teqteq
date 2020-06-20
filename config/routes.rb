@@ -6,10 +6,12 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
   
   get 'signup', to: 'users#new'
+  
+  get 'search', to: 'questions#search'
  
   resources :users, only: [:index, :show, :new, :create, :edit, :update] do
     member do 
-      get :user_answers
+      get :answers, to: 'users#answered_questions'
     end
   end
   

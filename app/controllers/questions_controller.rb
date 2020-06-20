@@ -15,7 +15,7 @@ class QuestionsController < ApplicationController
   def new
     @question = current_user.questions.new
   end
-
+  
   def create
     @question = current_user.questions.new(question_params)
     
@@ -50,6 +50,15 @@ class QuestionsController < ApplicationController
     redirect_to questions_url
   end
   
+  def answered_by?(user)
+    answers.where(user_id: user.id).exists?
+  end
+  
+  def search
+    @search = Question.search(params[:q])
+    @search_questions = @search.result.includes(:user).page(params[:page])
+  end
+  
   private
   
   def question_params
@@ -62,4 +71,5 @@ class QuestionsController < ApplicationController
       redirect_to root_url
     end
   end
+  
 end

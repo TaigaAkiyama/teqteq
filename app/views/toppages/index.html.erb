@@ -3,6 +3,7 @@
 
   <% if logged_in? %>
     <P>ログイン完了ユーザ: <%= current_user.name %></P>
+    <%= link_to('質問一覧', '/questions') %>
   <% else %>
     <%= link_to '新規登録', signup_path, class: 'btn btn-lg btn-primary' %>
   <% end %>

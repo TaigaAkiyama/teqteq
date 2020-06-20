@@ -1,0 +1,11 @@
+<h1>検索結果一覧</h1>
+<% @search_questions.each do |question| %>
+　<% if @search_questions.any? %>
+  　<div class="row d-flex">
+    　<%= render @search_questions %>
+  　</div>
+　<% else %>
+  　<h1><%= '検索結果がありません。' %></h1>
+　<% end %>
+<% end %>
+<%= paginate @search_questions %>
