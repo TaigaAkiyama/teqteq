@@ -30,6 +30,7 @@
 　          <%= link_to 'この回答を編集する', edit_question_answer_path(@question,answer), class: 'btn btn-danger btn-sm' %>
 　          <%= link_to 'この回答を削除する', question_answer_path(@question,answer), method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class: 'btn btn-danger btn-sm' %>
 　        <% end %>
+　        <p class="text-right"><%= link_to 'コメントする', new_question_answer_comment_path(@question,answer) %></p>
 　      </div>
 　    <% end %>
 　</div>
