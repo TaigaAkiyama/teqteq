@@ -26,6 +26,9 @@
 　        <strong><%= link_to answer.user.name, "/users/#{answer.user.id}" %></strong>
 　        <%= answer.body %>
 　        <!--画像の表示も-->
+　      </div>
+　      <div>
+　        <%= render 'favorites/favorite_button', answer: answer %>
 　        <% if current_user == answer.user %>
 　          <%= link_to 'この回答を編集する', edit_question_answer_path(@question,answer), class: 'btn btn-danger btn-sm' %>
 　          <%= link_to 'この回答を削除する', question_answer_path(@question,answer), method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class: 'btn btn-danger btn-sm' %>

@@ -8,18 +8,20 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new'
  
   resources :users, only: [:index, :show, :new, :create, :edit, :update] do
+  resources :messages, only: [:index, :create, :destroy]
     member do 
       get :answers, to: 'users#answered_questions'
+      get :likes
     end
   end
   
   resources :questions do
-    #collection do
-     # get :search
-    #end
     resources :answers, only: [:create, :edit, :update, :destroy] do
       resources :comments, only: [:index, :new, :create]
     end
   end
+  
+  resources :favorites, only: [:create, :destroy]
+  
 end
 

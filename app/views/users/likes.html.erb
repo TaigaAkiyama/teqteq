@@ -11,9 +11,6 @@
       <h2><%= @user.name %></h2>
       <%= @user.plofile %>
     </div>
-    <div>
-      <%= link_to "メッセージを送る", user_messages_path(current_user), class: 'btn btn-danger btn-xs' %>
-    </div>
   </div>
   <div class="row">
     <div class="offset-sm-2 col-sm-8" >
@@ -22,7 +19,7 @@
         <li class="nav-item"><a href="<%= answers_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(answers_user_path(@user)) %>">回答 <span class="badge badge-secondary"><%= @count_answered_questions %></span></a></li>
         <li class="nav-item"><a href="<%= likes_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(likes_user_path(@user)) %>">お気に入り <span class="badge badge-secondary"><%= @count_likes %></span></a></li>
       </ul>
-      <%= render 'questions/questions', questions: @questions %>
+      <%= render 'answers/answers', answers: @likes %>
     </div>
   </div>
 </div>  

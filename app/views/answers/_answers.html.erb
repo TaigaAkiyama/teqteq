@@ -1,6 +1,6 @@
 <div class="list-group">
   <% @answered_questions.each do |question| %>
-   <% @answers.each do |answer| %>
+   <% answers.each do |answer| %>
      <div class="list-group-item list-group-item-action", "mb-1">
        <h5><%= link_to(question.title, question_path(question.id)) %></h5>
        <small>回答日:<%= answer.created_at.strftime('%Y/%m/%d') %></small>

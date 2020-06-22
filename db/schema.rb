@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_21_155052) do
+ActiveRecord::Schema.define(version: 2020_06_22_073821) do
 
   create_table "answers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -43,6 +43,16 @@ ActiveRecord::Schema.define(version: 2020_06_21_155052) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
+  create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "receive_user_id"
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["receive_user_id"], name: "index_messages_on_receive_user_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "questions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.string "title"
@@ -69,5 +79,7 @@ ActiveRecord::Schema.define(version: 2020_06_21_155052) do
   add_foreign_key "comments", "users"
   add_foreign_key "favorites", "answers"
   add_foreign_key "favorites", "users"
+  add_foreign_key "messages", "users"
+  add_foreign_key "messages", "users", column: "receive_user_id"
   add_foreign_key "questions", "users"
 end

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_user_logged_in, only: [:show, :edit]
+  before_action :require_user_logged_in, only: [:show, :edit, :likes]
   
   def index
   end
@@ -48,6 +48,13 @@ class UsersController < ApplicationController
   def answered_questions
     @user = User.find(params[:id])
     @answers = @user.answers.page(params[:page])
+    @answered_questions = @user.answered_questions
+    counts(@user)
+  end
+  
+  def likes
+    @user = User.find(params[:id])
+    @likes = @user.likes.page(params[:page])
     @answered_questions = @user.answered_questions
     counts(@user)
   end

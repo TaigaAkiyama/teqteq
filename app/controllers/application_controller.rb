@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
   def counts(user)
     @count_questions = user.questions.count
     @count_answered_questions = user.answered_questions.count
+    @count_likes = user.likes.count
   end
   
   def set_search
