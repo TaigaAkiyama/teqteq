@@ -4,19 +4,29 @@
   <div class="col-6">
     
      <%= form_with(model: @question, local: true) do |f| %>
+       <% if @question.errors.any? %>
+         <div id="error_explanation">
+           <ul>
+             <% @question.errors.full_messages.each do |msg| %>
+               <li><%= msg %></li>
+             <% end %>
+           </ul>
+         </div>
+　　　 <% end %>
        <div class="form-group">
-        <%= f.label :title, 'タイトル' %>
-        <%= f.text_field :title, class: 'form-control' %>
+         <%= f.label :title, 'タイトル' %>
+         <%= f.text_field :title, class: 'form-control' %>
        </div>
 
        <div class="form-group">
-        <%= f.label :body, '本文' %>
-        <%= f.text_area :body, class: 'form-control' %>
+         <%= f.label :body, '本文' %>
+         <%= f.text_area :body, class: 'form-control' %>
        </div>
        
        <div>
-       <%= f.file_field :picture %>　
-       <%= f.submit '更新', class: 'btn btn-primary' %>
+         <%= f.label :picture, '画像' %>
+         <%= f.file_field :picture %>　
+         <%= f.submit '更新', class: 'btn btn-primary' %>
        </div>
      <% end %>
   </div>

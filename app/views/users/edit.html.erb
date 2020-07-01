@@ -1,18 +1,26 @@
-<div class="text-center">
-  <h1>プロフィールを編集</h1>
-    <%= form_with(model: @user, local: true) do |f| %>
-      <% if @user.picture? %>
-        <%= image_tag @user.picture.url %>
-      <% else %>
-      　<%= image_tag "/assets/default.jpg", :size => '150x150' %>
+<div class="container">
+  <div class="text-center">
+    <div class="edit-plofile">
+      <h1>プロフィールを編集</h1>
+      <br>
+      <%= form_with(model: @user, local: true) do |f| %>
+        <div class="edit-img">
+          <% if @user.picture? %>
+            <%= image_tag @user.picture.url, :size => '100x100' %>
+          <% else %>
+          　<%= image_tag "/assets/default.jpg", :size => '100x100' %>
+          <% end %>
+          <button type="button" class="btn btn-outline-secondary rounded-pill">
+            <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+          </button>
+        </div>
+        <br>
+        <div class="form-group">
+          <%= f.text_area :plofile, class: 'form-control', rows: '10' %>
+        </div>
+        <%= f.submit '更新', class: 'btn btn-primary' %>
       <% end %>
-        <button type="button" class="btn btn-outline-secondary rounded-pill">
-          <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
-        </button>
-       <div class="form-group">
-        <%= f.text_area :plofile, class: 'form-control' %>
-       </div>
-       <%= f.submit '更新', class: 'btn btn-primary' %>
-    <% end %>
-  <%= link_to 'ユーザ詳細に戻る', user_path(@user) %>
+    </div>
+    <%= link_to 'ユーザ詳細に戻る', user_path(@user) %>
+  </div>
 </div>

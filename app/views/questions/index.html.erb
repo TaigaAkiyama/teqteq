@@ -1,18 +1,30 @@
-<h1>質問一覧</h1>
-<div class="list-unstyled">
-  <% @search_questions.each do |question| %>
-    <li class="media mb-3">
-        <img class="mr-2 rounded">
-        <div class="media-body">
-          <div>
-            <%= link_to question.user.name, user_path(question.user) %> <span class="text-muted">投稿日 <%= question.created_at %></span>
-          </div>
-          <div>
-            <p><%= question.title %></p>
-            <%= link_to("詳細", "/questions/#{question.id}") %>
-          </div>
-        </div>
-    </li>
-  <% end %>
-  <%= paginate @questions %>
-</ul>
+<div class="container">
+  <div class="questions">
+    <h1 class="jumbotron text-center">質問一覧</h1>
+    <div class="row">
+      <div class="list-unstyled offset-sm-2 col-sm-8">
+        <% @search_questions.each do |question| %>
+          <li class="card mb-3">
+            <div class="card-body">
+                <div class="card-title">
+                  <h5><%= question.title %></h5>
+                </div>
+                <div class="card-text">
+                  <%= link_to("質問の詳細へ", "/questions/#{question.id}") %>
+                  <div class="question_user">
+                    <% if question.user.picture? %>
+                      <%= image_tag question.user.picture.url, :size => '25x25' %>
+                    <% else %>
+                    　<%= image_tag "/assets/default.jpg", :size => '25x25' %>
+                    <% end %>
+                    <%= link_to question.user.name, user_path(question.user) %><br><span class="text-muted">投稿日 <%= question.created_at.strftime('%Y/%m/%d') %></span>
+                  </div>
+                </div>
+            </div>
+          </li>
+        <% end %>
+        <%= paginate @questions %>
+      </div>
+    </div>
+  </div>  
+</div>      

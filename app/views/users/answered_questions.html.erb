@@ -1,17 +1,25 @@
 <div class="container">
-  <div class="row border-bottom">
-    <div class="offset-sm-1 col-sm-3">
+  <div class="row">
+    <div class="offset-sm-2 col-sm-2">
       <% if @user.picture? %>
-        <%= image_tag @user.picture.url %>
+        <%= image_tag @user.picture.url, :size => '100x100' %>
       <% else %>
-      　<%= image_tag "/assets/default.jpg", :size => '150x150' %>
+      　<%= image_tag "/assets/default.jpg", :size => '100x100' %>
       <% end %>
     </div>
     <div class="col-sm-8">
       <h2><%= @user.name %></h2>
-      <%= @user.plofile %>
+      <%= link_to "メッセージを送る", user_messages_path(current_user), class: 'btn btn-success btn-xs' %>
+      <% if @user.id == current_user.id %>
+        <%= link_to "プロフィールを編集する", edit_user_path, class: 'btn btn-success btn-xs' %>
+      <% end %>
     </div>
+  </div>  
+    <br>
+  <div class="card offset-sm-2 col-sm-8">
+    <%= @user.plofile %>
   </div>
+  <br>
   <div class="row">
     <div class="offset-sm-2 col-sm-8" >
       <ul class="nav nav-tabs nav-justified mb-3">

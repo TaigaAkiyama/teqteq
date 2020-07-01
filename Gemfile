@@ -63,3 +63,5 @@ gem 'rmagick'
 gem 'mini_magick'
 
 gem 'ransack'
+
+gem 'rails-i18n'

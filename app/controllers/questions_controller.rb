@@ -3,7 +3,7 @@ class QuestionsController < ApplicationController
   before_action :correct_user, only: [:destroy]
   
   def index
-    @questions = Question.all.order(id: :desc).page(params[:page])
+    @questions = Question.all.order(id: :desc).page(params[:page]).per(5)
   end
 
   def show
